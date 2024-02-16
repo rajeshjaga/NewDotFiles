@@ -1,0 +1,206 @@
+;This is Lucifers' polybar configuration file
+
+
+[colors]
+background = #513e47
+background-alt = #513241 
+foreground =  #ffbfde
+foreground-alt = #ffddee 
+primary = #513e47
+secondary = #ffddee
+alert = #CC0000
+
+[bar/mainbar]
+width = 100%
+height = 32
+radius = 0
+fixed-center = center
+offset-y = 0%
+offset-x = 0%
+background = ${colors.background}
+foreground = ${colors.foreground}
+line-size = 0
+line-color = #cff
+border-size = 0
+border-color = #00000000
+padding-left = 0
+padding-right = 0
+module-margin-left = 0
+module-margin-right = 0
+font-0 = Fira Code:style=Regular:pixelsize=12;1
+font-1 = unifont:fontformat=truetype:size=12:antialias=false;0
+font-2 = siji:pixelsize=12;1
+font-3 = Font Awesome 5 Free:pixelsize=12;2
+font-4 = Font Awesome 5 Free Solid:pixelsize=12;2
+font-5 = Font Awesome 5 Brands:style=Regular:pixelsize=12;2
+separator = "|"
+separator-padding = 1
+separator-foreground = ${colors.foreground-alt}
+
+modules-left = i3 xwindow 
+modules-center = 
+modules-right = backlight wlan pulseaudio battery date powermenu
+
+#tray position and padding is depreciated follow below tray modules
+tray-position = right
+tray-padding = 4
+override-redirrect = true
+wm-restack = i3
+cursor-click = pointer
+cursor-scroll = ns-resize
+
+
+
+[module/pacman-updates]
+type = custom/script
+exec = checkupdates | wc -l
+interval = 1000
+label = Updates: %output%
+format-foreground = #fff
+
+
+[module/backlight]
+type = internal/backlight
+card = intel_backlight
+use-actual-brightness = true
+enable-scroll = true
+format = <label>
+label = BL %percentage%%
+
+
+[module/xwindow]
+type = internal/xwindow
+label = %title%
+label-maxlen = 30
+
+[module/i3]
+type = internal/i3
+label-focused = %index%
+label-focused-background = ${colors.foreground}
+;label-focused-underline= ${colors.primary}
+label-focused-foreground = ${colors.background}
+label-focused-padding = 1
+label-occupied = %index%
+label-occupied-padding = 1
+label-urgent = %index%!
+label-urgent-background = ${colors.alert}
+label-urgent-padding = 1
+label-empty = %index%
+label-empty-foreground = ${colors.foreground-alt}
+label-empty-padding = 1
+; Separator in between workspaces
+ label-separator = |
+
+[module/wlan]
+type = internal/network
+interface = wlp0s20f3
+interval = 3.0
+format-connected = <label-connected>
+format-connected-foreground = #ffffff
+label-connected = %essid%
+format-disconnected = Wifi-Disconnected
+format-disconnected-foreground = #ffffff
+
+[module/date]
+type = internal/date
+interval = 5
+date = "%d-%m"
+date-alt = "%d-%m"
+time = %H:%M
+time-alt = %H:%M
+format-prefix = ""
+format-prefix-foreground = #ffffff
+format-foreground = #ffffff
+label = %time% | %date%
+
+[module/pulseaudio]
+type = internal/pulseaudio
+format-volume = <label-volume> 
+;<bar-volume>
+label-volume = VOL %percentage%%
+label-volume-foreground = #ffffff
+label-muted = 🔇 muted
+label-muted-foreground = ${color.foreground}
+bar-volume-width = 10
+bar-volume-foreground-0 = #55aa55
+bar-volume-foreground-1 = #55aa55
+bar-volume-foreground-2 = #55aa55
+bar-volume-foreground-3 = #55aa55
+bar-volume-foreground-4 = #55aa55
+bar-volume-foreground-5 = #f5a70a
+bar-volume-foreground-6 = #ff5555
+bar-volume-gradient = false
+bar-volume-indicator = |
+bar-volume-indicator-font = 2
+bar-volume-fill = ─
+bar-volume-fill-font = 2
+bar-volume-empty = ─
+bar-volume-empty-font = 2
+bar-volume-empty-foreground = ${colors.foreground-alt}
+
+[module/battery]
+type = internal/battery
+battery = BAT0
+adapter = ACAD
+full-at = 98
+format-charging = BAT <label-charging>
+format-charging-foreground = #ffffff
+format-foreground = #2eef23
+;format-charging-underline = #ffb52a
+format-dischaging-foreground = ${colors.foreground}
+format-discharging = BAT <label-discharging>
+;format-discharging-underline = ${self.format-charging-underline}
+format-full-prefix = BAT   
+;format-foreground = #11ccff
+format-full-prefix-foreground = #11ccff
+;format-full-underline = ${self.format-charging-underline}
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-foreground = ${colors.foreground}
+animation-charging-0 = " "
+animation-charging-1 = " "
+animation-charging-2 = " "
+animation-charging-foreground = #2eef23
+animation-charging-framerate = 750
+animation-discharging-0 = " "
+animation-discharging-1 = " "
+animation-discharging-2 = " "
+animation-discharging-foreground = #ffa100
+animation-discharging-framerate = 750
+
+[module/powermenu]
+type = custom/menu
+expand-right = true
+format-spacing = 1
+label-open = " "
+label-open-foreground = ${colors.secondary}
+label-close =  cancel
+label-close-foreground = ${colors.secondary}
+label-separator = |
+label-separator-foreground = ${colors.foreground-alt}
+menu-0-0 = reboot
+menu-0-0-exec = systemctl reboot
+menu-0-1 = power off
+menu-0-1-exec = systemctl poweroff
+menu-1-0 = cancel
+menu-1-0-exec = menu-open-0
+menu-1-1 = reboot
+menu-1-1-exec = systemctl reboot
+menu-2-0 = power off
+menu-2-0-exec = sudo poweroff
+menu-2-1 = cancel
+menu-2-1-exec = menu-open-0
+
+[settings]
+screenchange-reload = true
+;compositing-background = xor
+;compositing-background = screen
+;compositing-foreground = source
+;compositing-border = over
+;pseudo-transparency = false
+
+[global/wm]
+margin-top = 5
+margin-bottom = 5
+; vim:ft=dosini
