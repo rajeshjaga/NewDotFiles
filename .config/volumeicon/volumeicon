@@ -1,6 +1,5 @@
 [Alsa]
 card=default
-channel=Master
 
 [Notification]
 show_notification=true

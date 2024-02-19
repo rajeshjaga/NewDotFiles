@@ -114,7 +114,7 @@ client.placeholder       $overlay0 $base $text  $overlay0  $overlay0
 client.background        $base
 
 bar {
-    status_command i3status -c ~/.config/i3/i3status 
+    status_command i3blocks -c ~/.config/i3/i3blocks.conf
         position top
         colors {
             background         $base

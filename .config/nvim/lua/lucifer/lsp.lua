@@ -2,11 +2,6 @@ return{
     'VonHeikemen/lsp-zero.nvim',
     branch = 'v3.x',
     dependencies = {
-        -- LSP Support
-        {'neovim/nvim-lspconfig'},
-        {'williamboman/mason.nvim'},
-        {'williamboman/mason-lspconfig.nvim'},
-
         -- Autocompletion
         {'hrsh7th/nvim-cmp'},
         {'hrsh7th/cmp-buffer'},
@@ -20,19 +15,5 @@ return{
         {'rafamadriz/friendly-snippets'},
     },
     config = function()
-        local lsp_zero = require('lsp-zero')
-        local lspconfig = require('lspconfig')
-        lsp_zero.on_attach(function(client, bufnr)
-            lsp_zero.default_keymaps({buffer = bufnr})
-            lspconfig.eslintd.setup({
-            })
-        end)
-        require('mason').setup({})
-        require('mason-lspconfig').setup({
-            ensure_installed = {},
-            handlers = {
-                lsp_zero.default_setup,
-            },
-        })
     end,
 }

@@ -1,5 +1,8 @@
 $ ghc --make xmonad.hs -i -ilib -fforce-recomp -main-is main -dynamic -v0 -outputdir /home/jraj/.xmonad/build-x86_64-linux -o /home/jraj/.xmonad/xmonad-x86_64-linux
 
-<no location info>: error:
-    output was redirected with -o, but no output will be generated
-because there is no Main module.
+xmonad.hs:5:1: warning: [-Wdeprecations]
+    Module ‘XMonad.Util.Ungrab’ is deprecated:
+      Use XMonad.Operations.unGrab instead
+  |
+5 | import XMonad.Util.Ungrab
+  | ^^^^^^^^^^^^^^^^^^^^^^^^^
