@@ -75,6 +75,8 @@ for i in groups:
         ]
     )
 
+lazy.spawn('swaybg ~/Pictures/wally/21.png')
+
 layouts = [
     layout.Columns(border_focus_stack=["#1e1e2e", "#ffffff"], border_width=2),
     layout.Max(),
@@ -192,5 +194,5 @@ wmname = "LG3D"
 
 @hook.subscribe.startup_once
 def start_once():
-    home=os.path.expanduser('~')
-    subprocess.call([home+'NewDotFiles/.config/qtile/autostart.sh'])
+    home=os.path.expanduser('~/.config/qtile/autostart.sh')
+    subprocess.Popen([home])
