@@ -18,7 +18,7 @@ return {
         { 'neovim/nvim-lspconfig' },
         { 'williamboman/mason.nvim' },
         { 'williamboman/mason-lspconfig.nvim' },
-        { 'j-hui/fidget.nvim',                opts = {} },
+        { 'j-hui/fidget.nvim', opts = {} },
         { 'folke/neodev.nvim' },
     },
     config = function()
@@ -31,7 +31,7 @@ return {
         require('mason-lspconfig').setup({
             automatic_installation = true,
             handlers = {
-                lsp_zero.default_setup,
+                lsp_zero.default_setup(),
             },
         })
 
